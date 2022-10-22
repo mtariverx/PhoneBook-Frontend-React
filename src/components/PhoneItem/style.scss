@@ -1,0 +1,37 @@
+.phone-item-main {
+  display              : grid;
+  padding              : 5px;
+  grid-template-columns: 1fr 1fr 2fr;
+  border-radius        : 5px;
+  background-color     : #163423;
+  box-sizing           : border-box;
+  border               : 1px solid black;
+  color                : white;
+
+  &:hover {
+    cursor: pointer;
+    border: 1px solid blue;
+  }
+
+  &>.first-name {
+    display      : grid;
+    justify-items: left;
+    align-items  : center;
+  }
+
+  &>.last-name {
+    display      : grid;
+    justify-items: left;
+    align-items  : center;
+  }
+
+  &>.phone-number {
+    display      : grid;
+    justify-items: left;
+    align-items  : center;
+  }
+}
+.clicked {
+  border: 1px solid blue;
+
+}
