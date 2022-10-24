@@ -5,19 +5,25 @@ import PhoneItem from '../../components/PhoneItem';
 import EditModal from '../EditModal';
 import { useQuery } from "react-query";
 import * as mirror from '../../pic/mirror_helper';
+import { useUserData } from '../../providers/UserContext';
 const Book: React.FC = (props) => {
   const [books, setBooks] = useState<Array<pic.book_type>>([]);
   const [is_modal, setModal] = useState<number>(0);
   const [selected_user, setSelectedUser] = useState<any>();
   const [is_selected, setIsSelected] = useState<boolean>(false);
+  const { dispatch, user, callUserData } = useUserData();
+
   const onClickAddUser = () => {
+    callUserData(dispatch, 'create', '', '', '');
     setModal(1);
   }
   const onClickModifyUser = () => {
     if (!selected_user) {
       alert("Please select a user");
+    } else {
+      callUserData(dispatch, 'modify', selected_user.first_name, selected_user.last_name, selected_user.phone_number);
+      setModal(2);
     }
-    setModal(2);
   }
   const onClickDeleteUser = async () => {
     if (selected_user) {
@@ -71,10 +77,10 @@ const Book: React.FC = (props) => {
         </div>
       </div>
       {is_modal == 1 ?
-        <EditModal type='create' first_name='' last_name='' phone_number='' setModal={setModal} /> : ''
+        <EditModal setModal={setModal} /> : ''
       }
       {is_modal == 2 && selected_user ?
-        <EditModal type='modify' first_name={selected_user.first_name} last_name={selected_user.last_name} phone_number={selected_user.phone_number} setModal={setModal} />
+        <EditModal setModal={setModal} />
         : ''
       }
 

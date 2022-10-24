@@ -18,7 +18,8 @@ export async function set_phonebook(user: any) {
       "phone_number": user.phone_number
     }
     console.log("user=", input_data);
-    const response = await axios.get(url, { params: input_data });
+    // const response = await axios.get(url, { params: input_data });
+    const response = await axios.post(url, input_data);
     return response;
   } catch (error) {
     console.log("Error in set_phonebook");
@@ -32,10 +33,10 @@ export async function update_phonebook(user: any) {
       "last_name": user.last_name,
       "phone_number": user.phone_number
     }
-    const response = await axios.get(url, { params: input_data });
+    const response = await axios.put(url, input_data );
     return response;
   } catch (error) {
-    console.log("Error in get_all_phonebooks");
+    console.log("Error in update_phonebook");
   }
 }
 export async function delete_phonebooks(user: any) {
@@ -49,6 +50,6 @@ export async function delete_phonebooks(user: any) {
     const response = await axios.get(url, { params: input_data });
     return response;
   } catch (error) {
-    console.log("Error in get_all_phonebooks");
+    console.log("Error in delete_phonebooks");
   }
 }

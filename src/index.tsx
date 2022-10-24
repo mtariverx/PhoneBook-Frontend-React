@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { UserDataProvider } from "./providers/UserContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -17,7 +18,9 @@ root.render(
     <QueryClientProvider client={queryClient}>
       {/* Dev tools */}
       <ReactQueryDevtools initialIsOpen={false} />
-      <App />
+      <UserDataProvider>
+        <App />
+      </UserDataProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );
